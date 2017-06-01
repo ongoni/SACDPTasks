@@ -206,12 +206,48 @@ namespace SACDPTasks
             Stack<int> c = new Stack<int>();
             graph.SearchEuler(v - 1, ref a, ref c);
             graph.Reset();
-            
+
+            ArrayList path = new ArrayList();
             while (c.Count > 0)
             {
-                Console.Write((c.Pop() + 1).ToString() + " ");
+                path.Add(c.Pop());
             }
-            Console.WriteLine();
+
+            bool correct = true;
+            for (int i = 0; i + 1< path.Count; i++)
+            {
+                if (!graph.EdgeExist((int)path[i], (int)path[i + 1]))
+                {
+                    correct = false;
+                }
+            }
+
+            if (correct)
+            {
+                foreach (int vertex in path)
+                {
+                    Console.Write((vertex + 1).ToString() + " ");
+                }
+            }
+            else
+            {
+                Console.WriteLine("There is no Euler pathway for vertex " + v.ToString());
+            }
+        }
+
+        public void FindHamiltonPathway(int v)
+        {
+            graph.Reset();
+            int[] St = new int[graph.Size + 1];
+            St[0] = v - 1;
+            graph[v - 1] = true;
+            graph.SearchHamilton(1, ref St);
+
+            if (!graph.HaveHamiltonCycle)
+            {
+                Console.WriteLine("Graph don't have Hamilton cycle that starts " +
+                    "in vertex " + v.ToString());
+            }
         }
     }
 }

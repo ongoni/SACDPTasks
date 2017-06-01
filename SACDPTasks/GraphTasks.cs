@@ -30,5 +30,15 @@ namespace SACDPTasks
             
             graph.FindEulerPathway(a);
         }
+
+        public void FindHamiltonPathway()
+        {
+            Graph graph = new Graph().ReadFromFile("../../HamiltonGraphInput.txt");
+
+            Console.Write("Enter a: ");
+            int a = int.Parse(Console.ReadLine());
+            
+            graph.FindHamiltonPathway(a);
+        }
     }
 }

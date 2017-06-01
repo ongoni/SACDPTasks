@@ -8,6 +8,8 @@ namespace SACDPTasks
     {
         private int[,] adjacencyMatrix;
         private bool[] used;
+        private bool needToContinue = true;
+        public bool HaveHamiltonCycle = false;
 
         public int this[int i, int j]
         {
@@ -298,11 +300,20 @@ namespace SACDPTasks
                     if (k == adjacencyMatrix.GetLength(0) && i == 0)
                     {
                         St[k] = i;
-                        foreach (int item in St)
+                        if (needToContinue)
                         {
-                            Console.Write("{0} ", item + 1);
+                            foreach (int item in St)
+                            {
+                                Console.Write((item + 1).ToString() + " ");
+                            }
+                            Console.WriteLine();
+                            needToContinue = false;
                         }
-                        Console.WriteLine();
+
+                        if (!HaveHamiltonCycle && St[0] == St[St.Length - 1])
+                        {
+                            HaveHamiltonCycle = true;
+                        }
                     }
                     else
                     {
@@ -314,8 +325,15 @@ namespace SACDPTasks
                             used[i] = false;
                         }
                     }
+
                 }
+
             }
+        }
+
+        public bool EdgeExist(int i, int j)
+        {
+            return adjacencyMatrix[i, j] == 1;
         }
     }
 }
