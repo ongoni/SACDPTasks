@@ -40,5 +40,15 @@ namespace SACDPTasks
             
             graph.FindHamiltonPathway(a);
         }
+
+        public void FindPairs()
+        {
+            Graph graph = new Graph().ReadFromFile("../../WeightedGraphInput.txt");
+
+            Console.Write("Enter L: ");
+            int l = int.Parse(Console.ReadLine());
+
+            graph.FindPairs(l);
+        }
     }
 }

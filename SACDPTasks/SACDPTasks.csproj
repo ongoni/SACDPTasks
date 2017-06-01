@@ -59,6 +59,7 @@
     <Content Include="EulerGraphInput.txt" />
     <Content Include="GraphInput.txt" />
     <Content Include="HamiltonGraphInput.txt" />
+    <Content Include="WeightedGraphInput.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

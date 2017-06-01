@@ -17,7 +17,8 @@ namespace SACDPTasks
             GraphTasks graphTasks = new GraphTasks();
             //graphTasks.FindPathway();
             //graphTasks.FindEulerPathway();
-            graphTasks.FindHamiltonPathway();
+            //graphTasks.FindHamiltonPathway();
+            graphTasks.FindPairs();
         }
     }
 }

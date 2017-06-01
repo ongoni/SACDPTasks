@@ -249,5 +249,23 @@ namespace SACDPTasks
                     "in vertex " + v.ToString());
             }
         }
+
+        public void FindPairs(int l)
+        {
+            for (int i = 0; i < graph.Size; i++)
+            {
+                int[] p;
+                long[] d = graph.Dijkstra(i, out p);
+
+                for (int j = 0; j < graph.Size; j++)
+                {
+                    if (d[j] <= l && i != j)
+                    {
+                        Console.WriteLine("(" + (i + 1).ToString() + ", " + 
+                            (j + 1).ToString() + ") - " + d[j].ToString());
+                    }
+                }
+            }
+        }
     }
 }
