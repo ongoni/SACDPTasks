@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
@@ -13,8 +14,15 @@ namespace SACDPTasks
             graph = null;
         }
 
-        public void ReadFromFile(string path)
+        private Graph(GraphNode root)
         {
+            graph = root;
+        }
+
+        public Graph ReadFromFile(string path)
+        {
+            GraphNode root;
+
             using (StreamReader sr = new StreamReader(path))
             {
                 int n = int.Parse(sr.ReadLine());
@@ -31,8 +39,10 @@ namespace SACDPTasks
                     }
                 }
 
-                graph = new GraphNode(a);
+                root = new GraphNode(a);
             }
+
+            return new Graph(root);
         }
 
         public void Show()
@@ -134,9 +144,10 @@ namespace SACDPTasks
                     a[i, j] = graph[i, j];
                 }
             }
-            
+
             Stack<int> c = new Stack<int>();
             graph.SearchEuler(0, ref a, ref c);
+            graph.Reset();
 
             while (c.Count != 0)
             {
@@ -152,6 +163,55 @@ namespace SACDPTasks
             St[0] = 0;
             graph[0] = true;
             graph.SearchHamilton(1, ref St);
+        }
+
+        public void FindPathway(int a, int b)
+        {
+            if (a > graph.Size - 1 || b > graph.Size - 1)
+            {
+                Console.WriteLine("Wrong vertex.");
+                return;
+            }
+
+            ArrayList path = new ArrayList();
+            graph.Reset();
+            graph.Dfs(a - 1, path);
+
+            if (path.Contains(b))
+            {
+                foreach (int item in path)
+                {
+                    Console.Write(item.ToString() + " ");
+                    if (item == b) break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("There is no pathway to vertex " + (b + 1).ToString());
+            }
+        }
+
+        public void FindEulerPathway(int v)
+        {
+            int[,] a = new int[graph.Size, graph.Size];
+
+            for (int i = 0; i < graph.Size; i++)
+            {
+                for (int j = 0; j < graph.Size; j++)
+                {
+                    a[i, j] = graph[i, j];
+                }
+            }
+
+            Stack<int> c = new Stack<int>();
+            graph.SearchEuler(v - 1, ref a, ref c);
+            graph.Reset();
+            
+            while (c.Count > 0)
+            {
+                Console.Write((c.Pop() + 1).ToString() + " ");
+            }
+            Console.WriteLine();
         }
     }
 }

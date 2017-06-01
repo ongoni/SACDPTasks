@@ -56,6 +56,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BinaryTreeInput.txt" />
+    <Content Include="EulerGraphInput.txt" />
+    <Content Include="GraphInput.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

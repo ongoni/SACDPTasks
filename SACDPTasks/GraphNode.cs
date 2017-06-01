@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace SACDPTasks
@@ -19,6 +20,8 @@ namespace SACDPTasks
             get { return used[i]; }
             set { used[i] = value; }
         }
+
+        public GraphNode() { }
 
         public GraphNode(int[,] matrix)
         {
@@ -103,12 +106,11 @@ namespace SACDPTasks
                     }
                 }
             }
-
         }
 
         public void Dfs(int vertex)
         {
-            Console.Write(vertex + " ");
+            Console.Write((vertex + 1).ToString() + " ");
             used[vertex] = true;
 
             for (int i = 0; i < Size; i++)
@@ -116,6 +118,20 @@ namespace SACDPTasks
                 if (!used[i] && adjacencyMatrix[vertex, i] != 0)
                 {
                     Dfs(i);
+                }
+            }
+        }
+
+        public void Dfs(int a, ArrayList path)
+        {
+            used[a] = true;
+            path.Add(a + 1);
+
+            for (int i = 0; i < Size; i++)
+            {
+                if (!used[i] && adjacencyMatrix[a, i] != 0)
+                {
+                    Dfs(i, path);
                 }
             }
         }

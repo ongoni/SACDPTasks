@@ -8,5 +8,27 @@ namespace SACDPTasks
 {
     class GraphTasks
     {
+        public void FindPathway()
+        {
+            Graph graph = new Graph().ReadFromFile("../../GraphInput.txt");
+
+            Console.Write("Enter a: ");
+            int a = int.Parse(Console.ReadLine());
+            Console.Write("Enter b: ");
+            int b = int.Parse(Console.ReadLine());
+
+            graph.FindPathway(a, b);
+            Console.WriteLine();
+        }
+
+        public void FindEulerPathway()
+        {
+            Graph graph = new Graph().ReadFromFile("../../EulerGraphInput.txt");
+
+            Console.Write("Enter a: ");
+            int a = int.Parse(Console.ReadLine());
+            
+            graph.FindEulerPathway(a);
+        }
     }
 }

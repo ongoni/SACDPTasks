@@ -10,9 +10,13 @@ namespace SACDPTasks
     {
         static void Main(string[] args)
         {
-            BinaryTreeTasks treeTasks = new BinaryTreeTasks();
-            treeTasks.ProductOfNegativeNodes();
-            treeTasks.NodesHeight();
+            //BinaryTreeTasks treeTasks = new BinaryTreeTasks();
+            //treeTasks.ProductOfNegativeNodes();
+            //treeTasks.NodesHeight();
+
+            GraphTasks graphTasks = new GraphTasks();
+            //graphTasks.FindPathway();
+            graphTasks.FindEulerPathway();
         }
     }
 }
