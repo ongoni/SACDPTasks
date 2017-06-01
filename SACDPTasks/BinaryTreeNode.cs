@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SACDPTasks
 {
@@ -253,13 +249,38 @@ namespace SACDPTasks
             }
         }
 
-        public static void GetNodesList(BinaryTreeNode r, ArrayList nodes)
+        public static void GetNodeList(BinaryTreeNode r, ArrayList nodes)
         {
             if (r != null)
             {
                 nodes.Add(r);
-                GetNodesList(r.left, nodes);
-                GetNodesList(r.right, nodes);
+                GetNodeList(r.left, nodes);
+                GetNodeList(r.right, nodes);
+            }
+        }
+
+        public static void FindProductOfNegative(BinaryTreeNode node, ref int res)
+        {
+            if (node != null)
+            {
+                if ((int)node.inf < 0)
+                {
+                    res *= (int)node.inf;
+                }
+                FindProductOfNegative(node.left, ref res);
+                FindProductOfNegative(node.right, ref res);
+            }
+        }
+
+        public static int FindHeight(BinaryTreeNode node)
+        {
+            if (node != null)
+            {
+                return Math.Max(FindHeight(node.left), FindHeight(node.right)) + 1;
+            }
+            else
+            {
+                return 0;
             }
         }
     }

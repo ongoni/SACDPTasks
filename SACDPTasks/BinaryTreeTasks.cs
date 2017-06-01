@@ -8,5 +8,16 @@ namespace SACDPTasks
 {
     class BinaryTreeTasks
     {
+        public void ProductOfNegativeNodes()
+        {
+            BinaryTree tree = new BinaryTree().ReadFromFile("../../BinaryTreeInput.txt");
+            Console.WriteLine(tree.ProductOfNegativeNodes());
+        }
+
+        public void NodesHeight()
+        {
+            BinaryTree tree = new BinaryTree().ReadFromFile("../../BinaryTreeInput.txt");
+            tree.FindHeightForEach();
+        }
     }
 }

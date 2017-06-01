@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace SACDPTasks
 {
@@ -31,6 +28,24 @@ namespace SACDPTasks
         private BinaryTree(BinaryTreeNode r)
         {
             tree = r;
+        }
+
+        public BinaryTree ReadFromFile(string path)
+        {
+            BinaryTree tree = new BinaryTree();
+
+            using (StreamReader fileIn = new StreamReader(path))
+            {
+                string line = fileIn.ReadToEnd();
+                string[] data = line.Split(' ');
+
+                foreach (string item in data)
+                {
+                    tree.Add(int.Parse(item));
+                }
+            }
+
+            return tree; 
         }
 
         public void Add(object nodeInf)
@@ -81,11 +96,27 @@ namespace SACDPTasks
             BinaryTreeNode.Delete(ref tree, key);
         }
 
-        private ArrayList GetNodesList()
+        public int ProductOfNegativeNodes()
+        {
+            int res = 1;
+            BinaryTreeNode.FindProductOfNegative(tree, ref res);
+            return res;
+        }
+
+        private ArrayList GetNodeList()
         {
             ArrayList nodes = new ArrayList();
-            BinaryTreeNode.GetNodesList(tree, nodes);
+            BinaryTreeNode.GetNodeList(tree, nodes);
             return nodes;
+        }
+
+        public void FindHeightForEach()
+        {
+            foreach (BinaryTreeNode node in GetNodeList())
+            {
+                Console.WriteLine("Height of " + node.inf + " is " + 
+                    BinaryTreeNode.FindHeight(node));
+            }
         }
     }
 }

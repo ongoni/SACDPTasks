@@ -8,9 +8,14 @@ namespace SACDPTasks
     {
         private GraphNode graph;
 
-        public Graph(string fileName)
+        public Graph()
         {
-            using (StreamReader sr = new StreamReader(fileName))
+            graph = null;
+        }
+
+        public void ReadFromFile(string path)
+        {
+            using (StreamReader sr = new StreamReader(path))
             {
                 int n = int.Parse(sr.ReadLine());
                 int[,] a = new int[n, n];

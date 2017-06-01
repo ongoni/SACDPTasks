@@ -10,7 +10,9 @@ namespace SACDPTasks
     {
         static void Main(string[] args)
         {
-
+            BinaryTreeTasks treeTasks = new BinaryTreeTasks();
+            treeTasks.ProductOfNegativeNodes();
+            treeTasks.NodesHeight();
         }
     }
 }
